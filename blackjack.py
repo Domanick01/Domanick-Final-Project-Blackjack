@@ -6,14 +6,18 @@
 import random
 
 def mainGame():
-    # variables
-    cards = ["King", "Queen", "Jack", "Ace", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    # player variables
     playerCards = []
-    amount = 0
+    playerAmount = 0
     playerTotal = 0
-    dealerCards = []
-    dealerTotal = 0
     money = 0
+    # dealer variables
+    dealerCards = []
+    dealerAmount = 0
+    dealerTotal = 0
+    # game variables
+    cards = ["King", "Queen", "Jack", "Ace", 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    winner = ""
 
     # function for pulling a random card
     def pullCard():
@@ -38,9 +42,10 @@ def mainGame():
         if playerCards == []:
             for i in range(2):
                 playerCards += pullCard()
-                amount += 1
+                playerAmount += 1
                 dealerCards += pullCard()
-                
+                dealerAmount += 1
+
             # if statements for calculating total for both player and dealer
             for i in playerCards:
                 playerTotal += faceValues(i)
@@ -55,12 +60,15 @@ def mainGame():
             newDealerCards = dealerCards
             if nextMove == "hit":
                 newPlayerCards += pullCard()
-                playerTotal += faceValues(playerCards[amount])
+                playerAmount += 1
+                playerTotal += faceValues(playerCards[len(playerCards)])
                 print(f"Player's Cards: {playerCards} Total: {playerTotal} {"\n"}Dealer's Cards: {dealerCards} Total: {dealerTotal}")
             elif nextMove == "stand":
                 while dealerTotal <= 16:
                     newDealerCards += pullCard()
-                    dealerTotal += faceValues(dealerCards[amount])
+                    dealerAmount += 1
+                    print(len(dealerCards) - 1)
+                    dealerTotal += faceValues(dealerCards[(len(dealerCards) - 1)])
                     break
                 print(f"Player's Cards: {playerCards} Total: {playerTotal} {"\n"}Dealer's Cards: {dealerCards} Total: {dealerTotal}")
     
