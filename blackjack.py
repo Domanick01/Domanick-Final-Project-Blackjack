@@ -50,13 +50,23 @@ def mainGame():
         print(f"Player's Cards: {playerCards} Total: {playerTotal} {"\n"}Dealer's Cards: {dealerCards} Total: {dealerTotal}")
         
         while playerTotal and dealerTotal <= 21:
-            nextMove = input("What is your next move (hit, stand, double) >> ").lower
+            nextMove = input("What is your next move (hit, stand, double) >> ").lower()
+            newPlayerCards = playerCards
+            newDealerCards = dealerCards
             if nextMove == "hit":
-                print("NEXT MOVE HAS RAN")
-                playerCards += pullCard()
+                newPlayerCards += pullCard()
                 playerTotal += faceValues(playerCards[amount])
                 print(f"Player's Cards: {playerCards} Total: {playerTotal} {"\n"}Dealer's Cards: {dealerCards} Total: {dealerTotal}")
-
+            elif nextMove == "stand":
+                while dealerTotal <= 16:
+                    newDealerCards += pullCard()
+                    dealerTotal += faceValues(dealerCards[amount])
+                    break
+                print(f"Player's Cards: {playerCards} Total: {playerTotal} {"\n"}Dealer's Cards: {dealerCards} Total: {dealerTotal}")
+    
+    
+    
+    
     elif playGame[0] == "n":
         exit()
     else:
