@@ -11,6 +11,7 @@ def mainGame():
     playerAmount = 0
     playerTotal = 0
     money = 0
+    betAmount = 0
     # dealer variables
     dealerCards = []
     dealerAmount = 0
@@ -71,7 +72,13 @@ def mainGame():
                     dealerTotal += faceValues(dealerCards[(len(dealerCards) - 1)])
                     break
                 print(f"Player's Cards: {playerCards} Total: {playerTotal} {"\n"}Dealer's Cards: {dealerCards} Total: {dealerTotal}")
-    
+            elif nextMove == "double":
+                if betAmount * 2 <= money:
+                    newPlayerCards += pullCard()
+                playerAmount += 1
+                playerTotal += faceValues(playerCards[len(playerCards)])
+                print(f"Player's Cards: {playerCards} Total: {playerTotal} {"\n"}Dealer's Cards: {dealerCards} Total: {dealerTotal}")
+
     
     
     
